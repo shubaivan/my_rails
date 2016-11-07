@@ -1,0 +1,4 @@
+<li>
+  <input type='checkbox' name='done' value='1' data-url="<%= task_path(task)%>" data-method="PATCH" data-remote <%= 'checked' if task.done %>>
+  <span><%= task.title %></span>
+</li>

@@ -1,0 +1,12 @@
+<%= link_to 'All', root_path %>
+|
+<%= link_to 'Done', filtered_tasks_path(:done) %>
+|
+<%= link_to 'Open', filtered_tasks_path(:open) %>
+<hr>
+
+<%= render 'form' %>
+
+<ol id='tasks'>
+  <%= render tasks %>
+</ol>
