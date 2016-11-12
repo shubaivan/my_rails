@@ -15,16 +15,22 @@ class TasksController < ApplicationController
     @task.update(task_params)
   end
 
-  def destroy
-    Task.delete(params[:id])
-  end
-
   def edit
     @task = Task.find(params[:id])
   end
 
   def update_all
     Task.update_all(done: params[:done].present?)
+    head :ok, content_type: 'text/html'
+  end
+
+  def destroy
+    @task = Task.find(params[:id])
+    @task.destroy
+  end
+
+  def remove_completed
+    Task.where(done: true).delete_all
   end
 
   private
@@ -40,5 +46,6 @@ class TasksController < ApplicationController
   def tasks
     @tasks ||= Task.filtered(params[:type]).order(id: :desc)
   end
+
   helper_method :tasks
 end

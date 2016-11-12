@@ -6,5 +6,9 @@ Rails.application.routes.draw do
                  on: :collection,
                  as: :filtered,
                  constraints: { type: /open|done/ }
+    collection do
+      get 'remove_completed'
+      patch 'update_all'
+    end
   end
 end
