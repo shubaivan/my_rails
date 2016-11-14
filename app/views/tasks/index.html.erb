@@ -7,6 +7,7 @@
 
 <%= render 'form' %>
 
-<ol id='tasks'>
+<input type='checkbox' name='done' id='boss' value='1' data-url="<%= tasks_path %>" data-method="PATCH" data-remote <%= 'checked' if tasks.all?(&:done) %> >
+<ol id='tasks' data-type="<%= params[:type] %>">
   <%= render tasks %>
 </ol>

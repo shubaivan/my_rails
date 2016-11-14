@@ -1,4 +1,5 @@
-<li>
-  <input type='checkbox' name='done' value='1' data-url="<%= task_path(task)%>" data-method="PATCH" data-remote <%= 'checked' if task.done %>>
-  <span><%= task.title %></span>
+<li id="task_<%= task.id %>">
+  <input type='checkbox' name='task[done]' value='1' data-url="<%= task_path(task)%>" data-method="PATCH" data-params='' data-remote <%= 'checked' if task.done %>>
+  <%= link_to task.title, edit_task_path(task), remote: true %>
+  <%= link_to '×', task_path(task), method: :delete, remote: true %>
 </li>

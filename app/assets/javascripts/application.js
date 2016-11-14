@@ -15,6 +15,6 @@
 //= require turbolinks
 //= require_tree .
 
-$(document).on('change', 'input:checkbox', function(){
-  // alert(this.checked);
+$(document).on('change', 'input#boss', function(){
+  $('input:checkbox').prop('checked', this.checked)
 })
