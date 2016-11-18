@@ -6,7 +6,15 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      redirect_to root_url, :notice => "Signed up!"
+      user = User.authenticate(params[:user][:email], params[:user][:password])
+      if user
+        session[:user_id] = user.id
+        redirect_to root_url, :notice => "Logged in!"
+      else
+        flash.now.alert = "Invalid email or password"
+        render "new"
+      end
+      # redirect_to root_url, :notice => "Signed up!"
     else
       render "new"
     end
