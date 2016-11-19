@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
   root to: 'tasks#index'
+
+  get  'signup' => 'users#new'
+  get  'login' => 'sessions#new'
+  post 'login' => 'sessions#create'
+  get  'logout' => 'sessions#destroy'
+
   resources :tasks, except: [:index, :show] do
     patch '/', action: :update_all, on: :collection
     get ':type', action: :index,
@@ -11,4 +17,7 @@ Rails.application.routes.draw do
       patch 'update_all'
     end
   end
+
+  resources :users
+  resources :sessions
 end

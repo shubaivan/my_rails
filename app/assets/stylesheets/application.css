@@ -31,3 +31,20 @@ li a {
 li:hover .delete {
   display: inline-block;
 }
+
+.notice,
+.alert {
+  padding: 5px 8px;
+  margin: 10px 0;
+  width: 50%;
+}
+
+.notice {
+  background-color: #CFC;
+  border: solid 1px #6C6;
+}
+
+.alert {
+  background-color: #FCC;
+  border: solid 1px #C66;
+}

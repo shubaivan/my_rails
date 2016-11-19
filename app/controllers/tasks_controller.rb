@@ -1,4 +1,5 @@
 class TasksController < ApplicationController
+  before_action :authorize
   before_action :normalize_params, only: :update
 
   def index
