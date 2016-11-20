@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
                     format: { with: VALID_EMAIL_REGEX },
                     uniqueness: { case_sensitive: false }
   has_secure_password
-  validates :password, presence: true, length: { minimum: 2 }
+  validates :password, presence: true, length: { minimum: 2 }, allow_nil: true
 
   class << self
     # Returns the hash digest of the given string.
