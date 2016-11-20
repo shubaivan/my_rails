@@ -1,8 +1,11 @@
 Rails.application.routes.draw do
-  get "log_out" => "sessions#destroy", :as => "log_out"
-  get "log_in" => "sessions#new", :as => "log_in"
-  get "sign_up" => "users#new", :as => "sign_up"
+  get 'static_pages/contact'
+  get    '/signup',   to: 'users#new'
+  get    '/login',   to: 'sessions#new'
+  post   '/login',   to: 'sessions#create'
+  delete '/logout',  to: 'sessions#destroy'
 
+  post '/signup',  to: 'users#create'
   resources :users
   resources :sessions
 
