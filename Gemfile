@@ -12,6 +12,7 @@ gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
 
 group :development, :test do
+  gem 'rails-controller-testing'
   gem 'byebug', platform: :mri
   gem 'sqlite3'
 end
