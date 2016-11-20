@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161117204850) do
+ActiveRecord::Schema.define(version: 20161120111224) do
 
   create_table "tasks", force: :cascade do |t|
     t.string   "title"
@@ -25,8 +25,14 @@ ActiveRecord::Schema.define(version: 20161117204850) do
     t.string   "email"
     t.string   "password_hash"
     t.string   "password_salt"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.string   "reset_digest"
+    t.datetime "reset_sent_at"
+    t.string   "remember_digest"
+    t.string   "name"
+    t.string   "password_digest"
+    t.index ["email"], name: "index_users_on_email", unique: true
   end
 
 end
