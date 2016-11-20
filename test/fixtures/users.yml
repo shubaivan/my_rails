@@ -6,6 +6,11 @@ one:
   password_salt: MyString
 
 two:
-  email: MyString
+  email: MyString1
   password_hash: MyString
   password_salt: MyString
+
+michael:
+  name: Michael Example
+  email: michael@example.com
+  password_digest: <%= User.digest('password') %>
