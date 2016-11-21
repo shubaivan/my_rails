@@ -52,6 +52,10 @@ p {
   line-height: 1.7em;
 }
 
+[class|=top] {
+  background: yellow;
+  text-align: center;
+}
 /* header */
 
 #logo {

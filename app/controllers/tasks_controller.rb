@@ -1,5 +1,6 @@
 class TasksController < ApplicationController
   before_action :normalize_params, only: :update
+  before_action :check_current_user, only: [:index, :update, :create, :destroy, :edit]
 
   def index
     @task = Task.new
@@ -40,5 +41,13 @@ class TasksController < ApplicationController
   def tasks
     @tasks ||= Task.filtered(params[:type]).order(id: :desc)
   end
+
+  def check_current_user
+    check = current_user.present?
+    if !check
+       redirect_to login_path
+    end
+  end
+
   helper_method :tasks
 end
