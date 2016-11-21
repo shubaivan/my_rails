@@ -42,10 +42,11 @@ class TasksController < ApplicationController
     @tasks ||= Task.filtered(params[:type]).order(id: :desc)
   end
 
+  # Confirms a logged-in user.
   def check_current_user
-    check = current_user.present?
-    if !check
-       redirect_to login_path
+    unless logged_in?
+      flash[:danger] = "Please log in."
+      redirect_to login_url
     end
   end
 
