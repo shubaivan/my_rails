@@ -11,3 +11,6 @@
 <ol id='tasks' data-type="<%= params[:type] %>">
   <%= render tasks %>
 </ol>
+
+<%= link_to "Remove completed", remove_completed_tasks_path,
+                                method: :get, remote: true %>
