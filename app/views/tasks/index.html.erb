@@ -1,16 +1,17 @@
-<%= link_to 'All', root_path %>
+<%= link_to 'All', list_tasks_path(current_list) %>
 |
-<%= link_to 'Done', filtered_tasks_path(:done) %>
+<%= link_to 'Done', filtered_list_tasks_path(current_list, :done) %>
 |
-<%= link_to 'Open', filtered_tasks_path(:open) %>
+<%= link_to 'Open', filtered_list_tasks_path(current_list, :open) %>
 <hr>
 
+<h1><%= current_list.title %></h1>
 <%= render 'form' %>
 
-<input type='checkbox' name='done' id='boss' value='1' data-url="<%= tasks_path %>" data-method="PATCH" data-remote <%= 'checked' if tasks.all?(&:done) %> >
+<input type='checkbox' name='done' id='boss' value='1' data-url="<%= list_tasks_path(current_list) %>" data-method="PATCH" data-remote <%= 'checked' if tasks.all?(&:done) %> >
 <ol id='tasks' data-type="<%= params[:type] %>">
   <%= render tasks %>
 </ol>
 
-<%= link_to "Remove completed", remove_completed_tasks_path,
+<%= link_to "Remove completed", remove_completed_list_tasks_path,
                                 method: :get, remote: true %>

@@ -6,6 +6,12 @@ class ApplicationController < ActionController::Base
   end
   helper_method :current_user
 
+  def current_list
+    @current_list ||= current_user.lists.find(params[:list_id])
+  end
+
+  helper_method :current_list
+
   def authorize
     redirect_to '/login' unless current_user
   end

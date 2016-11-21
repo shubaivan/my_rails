@@ -6,7 +6,7 @@ class SessionsController < ApplicationController
     user = User.find_by_email(params[:email])
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
-      redirect_to '/', notice: 'Logged in successfully!'
+      redirect_to list_tasks_path(user.lists.first)
     else
       redirect_to '/login', alert: 'Email or password is incorrect!'
     end

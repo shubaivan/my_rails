@@ -7,31 +7,31 @@ class TasksController < ApplicationController
   end
 
   def create
-    @task = Task.new(task_params)
+    @task = current_list.tasks.build(task_params)
     render(:new) unless @task.save
   end
 
   def update
-    @task = Task.find(params[:id])
+    @task = current_list.tasks.find(params[:id])
     @task.update(task_params)
   end
 
   def edit
-    @task = Task.find(params[:id])
+    @task = current_list.tasks.find(params[:id])
   end
 
   def update_all
-    Task.update_all(done: params[:done].present?)
+    current_list.tasks.update_all(done: params[:done].present?)
     head :ok, content_type: 'text/html'
   end
 
   def destroy
-    @task = Task.find(params[:id])
+    @task = current_list.tasks.find(params[:id])
     @task.destroy
   end
 
   def remove_completed
-    Task.where(done: true).delete_all
+    current_list.tasks.where(done: true).delete_all
   end
 
   private
@@ -45,7 +45,7 @@ class TasksController < ApplicationController
   end
 
   def tasks
-    @tasks ||= Task.filtered(params[:type]).order(id: :desc)
+    @tasks ||= current_list.tasks.filtered(params[:type]).order(id: :desc)
   end
 
   helper_method :tasks
