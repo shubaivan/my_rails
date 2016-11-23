@@ -7,6 +7,9 @@ class User < ActiveRecord::Base
                     format: { with: VALID_EMAIL_REGEX },
                     uniqueness: { case_sensitive: false }
   has_secure_password
+  has_many :lists, dependent: :destroy
+  has_many :tasks, through: :lists, dependent: :destroy
+
   validates :password, presence: true, length: { minimum: 2 }, allow_nil: true
 
   class << self

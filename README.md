@@ -1,4 +1,4 @@
-- Add model user (name, email, password_digest) `has_secure_password`
-- Add user registration (`UserController`. `new, create`)
-- Add signin (`SessionController`. `new, create`)
-- Add navigation links: if user signed in show his name else show login link
+- Add ability to create multiple lists and navigate between them
+- Add ability to share lists by email
+  - Create table `lists_users` with fields `user_id` and `list_id`
+  - User `has_and_belongs_to_many` association
