@@ -12,6 +12,8 @@ class User < ActiveRecord::Base
 
   validates :password, presence: true, length: { minimum: 2 }, allow_nil: true
 
+  after_create :create_default_list
+
   class << self
     # Returns the hash digest of the given string.
     def digest(string)
@@ -41,5 +43,11 @@ class User < ActiveRecord::Base
   # Forgets a user.
   def forget
     update_attribute(:remember_digest, nil)
+  end
+
+  private
+
+  def create_default_list
+    lists.create(title: :default)
   end
 end

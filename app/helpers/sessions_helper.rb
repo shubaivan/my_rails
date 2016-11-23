@@ -24,6 +24,11 @@ module SessionsHelper
     end
   end
 
+  # Returns current_list.
+  def current_list
+    @current_list ||= current_user.lists.find(params[:list_id])
+  end
+
   # Returns true if the user is logged in, false otherwise.
   def logged_in?
     !current_user.nil?

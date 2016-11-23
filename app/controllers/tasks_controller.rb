@@ -1,5 +1,5 @@
 class TasksController < ApplicationController
-  before_action :authorize
+  # before_action :authorize
   before_action :normalize_params, only: :update
   before_action :check_current_user, only: [:index, :update, :create, :destroy, :edit]
 
