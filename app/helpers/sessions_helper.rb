@@ -26,6 +26,10 @@ module SessionsHelper
 
   # Returns current_list.
   def current_list
+    # unless logged_in?
+    #   @current_list ||= current_user.lists.first
+    # end
+
     @current_list ||= current_user.lists.find(params[:list_id])
   end
 

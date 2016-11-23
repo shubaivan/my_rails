@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   get 'lists/new'
+  get 'lists/index',   to: 'lists#index'
 
   get 'static_pages/contact'
   get 'static_pages/home'
@@ -14,10 +15,10 @@ Rails.application.routes.draw do
 
   root to: 'tasks#index'
 
-  get  'signup' => 'users#new'
-  get  'login' => 'sessions#new'
-  post 'login' => 'sessions#create'
-  get  'logout' => 'sessions#destroy'
+  # get  'signup' => 'users#new'
+  # get  'login' => 'sessions#new'
+  # post 'login' => 'sessions#create'
+  # get  'logout' => 'sessions#destroy'
 
   resources :lists do
     resources :tasks, except: [:show] do
@@ -33,6 +34,6 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :users
-  resources :sessions
+  # resources :users
+  # resources :sessions
 end

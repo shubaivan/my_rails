@@ -1,0 +1,6 @@
+Lists:
+<br>
+<% @user.lists.all.each do |list| %>
+    <%= list.title %>:
+    <%= link_to 'list tasks', list_tasks_path(list) %><br>
+<% end %>

@@ -4,7 +4,7 @@
     <nav>
       <ul class="nav navbar-nav navbar-right">
         <% if logged_in? %>
-            <li><%= link_to "Task Manager", root_path %></li>
+            <li><%= link_to "Lists Manager", lists_path %></li>
         <% else %>
             <li><%= link_to "Home", static_pages_home_path %></li>
         <% end %>
