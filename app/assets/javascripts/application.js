@@ -26,10 +26,12 @@ $(document).on('change', '.single input[type=checkbox]', function(){
 
 function generalCheckState() {
   var checkedCount = document.querySelectorAll('.single input:checked').length;
-    checkboxes = document.querySelectorAll('.single input[type=checkbox]'),
+    checkboxes = document.querySelectorAll('.single input[type=checkbox]');
     checkall = document.getElementById('boss');
-    checkall.checked = checkedCount == checkboxes.length;
-    checkall.indeterminate = checkedCount > 0 && checkedCount < checkboxes.length;
+    if (checkall) {
+        checkall.checked = checkedCount == checkboxes.length;
+        checkall.indeterminate = checkedCount > 0 && checkedCount < checkboxes.length;
+    }
 }
 
 $(document).ready(function(){

@@ -1,4 +1,7 @@
 <br>
 <% provide(:button_text, 'Save list') %>
-<%= render 'lists/lists', object: @user %>
+<p id='lists'>
+  <%= render 'lists/lists', object: @user %>
+</p>
+
 <%= render 'form' %>
