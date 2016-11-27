@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   get 'lists/new'
+  get 'lists/shared',  to: 'lists#shared'
   get 'lists/index',   to: 'lists#index'
   post 'lists/edit',   to: 'lists#edit'
 

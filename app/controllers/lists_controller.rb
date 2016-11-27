@@ -4,6 +4,10 @@ class ListsController < ApplicationController
     @list = List.new
   end
 
+  def shared
+    @user = current_user
+  end
+
   def create
     @list = List.new(list_params)
     @list.user= current_user
