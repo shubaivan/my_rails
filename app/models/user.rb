@@ -10,6 +10,9 @@ class User < ActiveRecord::Base
   has_many :lists, dependent: :destroy
   has_many :tasks, through: :lists, dependent: :destroy
 
+  has_many :lists_user
+  has_many :list, through: :lists_user
+
   validates :password, presence: true, length: { minimum: 2 }, allow_nil: true
 
   after_create :create_default_list
