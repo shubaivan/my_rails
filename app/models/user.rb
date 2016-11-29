@@ -17,6 +17,15 @@ class User < ActiveRecord::Base
 
   after_create :create_default_list
 
+  scope :include_current_user_sql, ->(user, param_list) {
+    sql =
+        "SELECT DISTINCT u.id, u.email FROM users as u
+        LEFT JOIN lists_users as lu ON lu.user_id = u.id
+        WHERE u.id != #{user.id}
+        AND lu.list_id != #{param_list.id}"
+    records_array = ActiveRecord::Base.connection.execute(sql)
+  }
+
   class << self
     # Returns the hash digest of the given string.
     def digest(string)
@@ -28,6 +37,10 @@ class User < ActiveRecord::Base
     # Returns a random token.
     def new_token
       SecureRandom.urlsafe_base64
+    end
+
+    def include_current_user(user, list)
+      where.not(id: user.id)
     end
   end
 

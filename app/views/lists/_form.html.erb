@@ -1,7 +1,7 @@
 <%= form_for @list, remote: true do |f| %>
   <%= render 'shared/error_messages', user: @list %>
   <%= f.text_field :title, autofocus: true, autocomplete: false %>
-  <%= f.collection_check_boxes(:users, User.where.not(id: current_user.id), :id, :email)%>
+  <%= f.collection_check_boxes(:users, shared_users, :id, :email)%>
 
   <%= f.submit yield(:button_text), class: "btn btn-primary" %>
 <% end %>
