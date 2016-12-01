@@ -5,6 +5,6 @@
 </head>
 <body>
 <h1>list id <%= @list.id %></h1>
-<%= link_to 'signup', signup_url %>
+<%= link_to 'signup', signup_url(list_id: @list.id) %>
 </body>
 </html>

@@ -12,6 +12,12 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
+      if params[:user][:list_id]
+        @list = List.find_by(id: params[:user][:list_id])
+        if @list
+          create_lists_user [@user], @list
+        end
+      end
       log_in @user
       flash[:success] = "Welcome to the Sample App!"
       redirect_to @user
@@ -55,5 +61,22 @@ class UsersController < ApplicationController
   def correct_user
     @user = User.find(params[:id])
     redirect_to(root_url) unless @user == current_user
+  end
+
+  def create_lists_user(user_ids, list)
+    user_ids.each do |item|
+      if item.is_a?(User)
+        user_object = item
+      else
+        user_object = User.find_by(id: item)
+      end
+
+      if user_object
+        @lists_user = ListsUser.new
+        @lists_user.user = user_object
+        @lists_user.list = list
+        @lists_user.save
+      end
+    end
   end
 end
