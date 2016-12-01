@@ -1,0 +1,5 @@
+<%= form_tag(my_update_path(:id => current_list.id), method: 'post', remote: true) do %>
+    <%= text_field_tag :email, nil, placeholder: 'Email another user' %>
+
+    <%= submit_tag yield(:button_text), class: "btn btn-primary" %>
+<% end %>

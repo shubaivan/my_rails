@@ -3,4 +3,5 @@ Lists:
 <% current_user.lists.all.each do |list| %>
     <%= link_to list.title, edit_list_path(list) %>:
     <%= link_to 'list tasks', list_tasks_path(list) %><br>
+    <%= link_to 'custom shared user', my_edit_path(:id => list.id) %><br>
 <% end %>

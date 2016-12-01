@@ -32,6 +32,23 @@ class ListsController < ApplicationController
     @list = List.find(params[:id])
   end
 
+  def custom_edit
+    @list = List.find(params[:id])
+  end
+
+  def custom_update
+    @list = List.find(params[:id])
+    @user = User.find_by(email: params[:email])
+    if @user
+      create_lists_user [@user], @list
+      flash[:success] = "find user"
+      redirect_to lists_path
+    else
+      flash[:success] = "empty user"
+      redirect_to my_edit_path
+    end
+  end
+
   def list_params
     params.require(:list).permit(:title)
   end
@@ -44,7 +61,12 @@ class ListsController < ApplicationController
 
   def create_lists_user(user_ids, list)
     user_ids.each do |item|
-      user_object = User.find_by(id: item)
+      if item.is_a?(User)
+        user_object = item
+      else
+        user_object = User.find_by(id: item)
+      end
+
       if user_object
         @lists_user = ListsUser.new
         @lists_user.user = user_object

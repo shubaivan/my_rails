@@ -3,6 +3,8 @@ Rails.application.routes.draw do
   get 'lists/shared',  to: 'lists#shared'
   get 'lists/index',   to: 'lists#index'
   post 'lists/edit',   to: 'lists#edit'
+  get 'lists/custom_edit/:id',   to: 'lists#custom_edit', :as => 'my_edit'
+  post 'lists/custom_update/:id',   to: 'lists#custom_update', :as => 'my_update'
 
   get 'static_pages/contact'
   get 'static_pages/home'
