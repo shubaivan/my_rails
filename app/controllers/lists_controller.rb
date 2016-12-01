@@ -41,9 +41,11 @@ class ListsController < ApplicationController
     @user = User.find_by(email: params[:email])
     if @user
       create_lists_user [@user], @list
+      UserNotifierMailer.send_signin_email(@user).deliver
       flash[:success] = "find user"
       redirect_to lists_path
     else
+      UserNotifierMailer.send_signup_email(params[:email], @list).deliver
       flash[:success] = "empty user"
       redirect_to my_edit_path
     end
