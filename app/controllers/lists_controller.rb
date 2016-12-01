@@ -55,8 +55,12 @@ class ListsController < ApplicationController
   end
 
   def shared_users
+    @users ||= User.shared_user(current_user)
+  end
+
+  def shared_users_iclude_lists
     @users ||= User.include_current_user(current_user, current_list)
   end
 
-  helper_method :shared_users
+  helper_method :shared_users, :shared_users_iclude_lists
 end

@@ -39,8 +39,14 @@ class User < ActiveRecord::Base
       SecureRandom.urlsafe_base64
     end
 
-    def include_current_user(user, list)
+    def shared_user(user)
       where.not(id: user.id)
+    end
+
+    def include_current_user(user, list)
+      left_outer_joins(:lists_user)
+          .where.not(users: { id: user.id }, lists_users: { list_id: list.id })
+          .group('users.id')
     end
   end
 

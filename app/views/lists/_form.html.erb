@@ -1,7 +1,11 @@
 <%= form_for @list, remote: true do |f| %>
   <%= render 'shared/error_messages', user: @list %>
   <%= f.text_field :title, autofocus: true, autocomplete: false %>
-  <%= f.collection_check_boxes(:users, shared_users, :id, :email)%>
+    <% if params[:action] == 'edit' %>
+      <%= f.collection_check_boxes(:users, shared_users_iclude_lists, :id, :email)%>
+    <% elsif params[:action] == 'index' %>
+      <%= f.collection_check_boxes(:users, shared_users, :id, :email)%>
+    <% end %>
 
   <%= f.submit yield(:button_text), class: "btn btn-primary" %>
 <% end %>
