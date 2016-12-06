@@ -46,7 +46,7 @@ class TasksController < ApplicationController
   end
 
   def tasks
-    @tasks ||= current_list.tasks.filtered(params[:type]).order(id: :desc)
+    @tasks ||= for_current_list.tasks.filtered(params[:type]).order(id: :desc)
   end
 
   # Confirms a logged-in user.
@@ -57,5 +57,10 @@ class TasksController < ApplicationController
     end
   end
 
-  helper_method :tasks
+  # Confirms a logged-in user.
+  def for_current_list
+    @list = List.find_by(id: params[:list_id])
+  end
+
+  helper_method :tasks, :for_current_list
 end

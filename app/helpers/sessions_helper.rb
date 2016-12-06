@@ -26,14 +26,11 @@ module SessionsHelper
 
   # Returns current_list.
   def current_list
-    if logged_in?
-      list_id = params[:list_id] ? params[:list_id] : params[:id]
-      if list_id
-        @current_list ||= current_user.lists.find(list_id)
-      else
-        @current_list ||= current_user.lists.first
-      end
-    end
+    # unless logged_in?
+    #   @current_list ||= current_user.lists.first
+    # end
+
+    @current_list ||= current_user.lists.find(params[:list_id] ? params[:list_id] : params[:id])
   end
 
   # Returns true if the user is logged in, false otherwise.
