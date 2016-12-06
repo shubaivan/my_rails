@@ -13,5 +13,5 @@
   <%= render tasks %>
 </ol>
 
-<%= link_to "Remove completed", remove_completed_list_tasks_path,
+<%= link_to "Remove completed", remove_completed_list_tasks_path(current_list),
                                 method: :get, remote: true %>
